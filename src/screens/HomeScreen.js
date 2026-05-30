@@ -1,96 +1,88 @@
 // TODO: estilizar esta tela com as cores e identidade visual do seu tema
 // TODO: importar useState e useEffect — adicione a linha abaixo no topo:
-// import { useState, useEffect } from 'react';
-import {
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { useState, useEffect } from 'react';
+import { FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 // TODO: substituir pelos jogos que voce escolheu
 const jogos = [
   {
     id: '1',
-    titulo: 'The Legend of Zelda: Breath of the Wild',
-    genero: 'Aventura / Mundo Aberto',
-    plataforma: 'Nintendo Switch',
-    nota: '10/10',
+    titulo: 'Minecraft',
+    genero: 'Sobrevivência / Aventura / Mundo Aberto',
+    plataforma: 'Disponível em praticamente todas as plataformas',
+    nota: '9/10',
     sinopse:
-      'Explore um vasto mundo aberto em Hyrule. Resolva puzzles, enfrente inimigos e descubra segredos em uma das aventuras mais aclamadas da historia dos games.',
+      'Jogo de mundo aberto onde os jogadores exploram, coletam recursos, constroem estruturas e enfrentam criaturas.',
   },
   {
     id: '2',
-    titulo: 'Red Dead Redemption 2',
-    genero: 'Acao / Mundo Aberto',
-    plataforma: 'PS4 / Xbox / PC',
-    nota: '10/10',
+    titulo: 'Fortnite',
+    genero: 'Battle Royale / Tiro / Sobrevivência',
+    plataforma: 'PS4 / Xbox / PC / Android',
+    nota: '8.5/10',
     sinopse:
-      'Uma epica historia sobre a vida fora da lei no coracao da America. Viva a aventura de Arthur Morgan no velho oeste em um mundo detalhado e imersivo.',
+      'Até 100 jogadores competem em uma ilha até restar apenas um vencedor. Também possui modos criativos e eventos especiais.',
   },
   {
     id: '3',
-    titulo: 'God of War',
-    genero: 'Acao / Aventura',
-    plataforma: 'PS4 / PC',
-    nota: '10/10',
+    titulo: 'Among Us',
+    genero: 'Estratégia / Multiplayer / Dedução Social',
+    plataforma: 'PS4 / PC / Android / iOS',
+    nota: '8/10',
     sinopse:
-      'Kratos e seu filho Atreus embarcam em uma jornada pelos Nove Reinos da mitologia nordica. Um dos jogos mais premiados de sua geracao.',
+      'Tripulantes devem completar tarefas enquanto tentam descobrir quem são os impostores infiltrados na equipe.',
   },
   {
     id: '4',
-    titulo: 'Hollow Knight',
-    genero: 'Metroidvania / Plataforma',
-    plataforma: 'PC / Switch / PS4',
-    nota: '9/10',
+    titulo: 'Roblox',
+    genero: 'Plataforma de Jogos / Sandbox / Multiplayer',
+    plataforma: 'PC / Switch / PS4 / Android / iOS',
+    nota: '8/10',
     sinopse:
-      'Explore um vasto reino subterraneo habitado por insetos. Um desafio preciso e belo, com um mundo imenso para descobrir.',
+      'Plataforma que permite jogar milhões de experiências criadas pela comunidade ou desenvolver os seus próprios jogos.',
   },
   {
     id: '5',
-    titulo: 'Celeste',
-    genero: 'Plataforma / Indie',
-    plataforma: 'PC / Switch / PS4',
-    nota: '9/10',
+    titulo: 'R.E.P.O.',
+    genero: 'Terror Cooperativo / Ação / Extração',
+    plataforma: 'PC',
+    nota: '8.5/10',
     sinopse:
-      'Ajude Madeline a sobreviver sua viagem interior pela montanha Celeste. Um platformer desafiador com uma historia tocante sobre superacao.',
+      'Os jogadores trabalham em equipe para recuperar objetos valiosos em locais perigosos enquanto evitam criaturas e armadilhas. O foco está na cooperação e na física dos objetos transportados.',
   },
   {
     id: '6',
-    titulo: 'Stardew Valley',
-    genero: 'Simulacao / RPG',
-    plataforma: 'PC / Switch / Mobile',
-    nota: '9/10',
+    titulo: 'Call Of Duty: Black Ops 6',
+    genero: 'Tiro em Primeira Pessoa / Ação',
+    plataforma: 'PC / PS5 / PS4 / Xbox Series X/S / Xbox One',
+    nota: '8/10',
     sinopse:
-      'Herde a fazenda do seu avo e comece uma nova vida. Plante, colete, construa relacionamentos e explore cavernas neste mundo relaxante.',
+      'Campanha militar, modo multiplayer competitivo e modo zumbis. Faz parte de uma das franquias de tiro mais populares do mundo.',
   },
 ];
 
 // TODO: adicionar { navigation } como parametro quando a navegacao estiver configurada
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   // TODO: estado para o texto digitado na busca
-  // const [busca, setBusca] = useState('');
+  const [busca, setBusca] = useState('');
 
   // TODO: estado com os jogos exibidos na lista — inicia com todos
-  // const [jogosFiltrados, setJogosFiltrados] = useState(jogos);
+  const [jogosFiltrados, setJogosFiltrados] = useState(jogos);
 
   // TODO: filtrar os jogos sempre que o valor de 'busca' mudar
-  // useEffect(() => {
-  //   const resultado = jogos.filter((jogo) =>
-  //     jogo.titulo.toLowerCase().includes(busca.toLowerCase())
-  //   );
-  //   setJogosFiltrados(resultado);
-  // }, [busca]);
+  useEffect(() => {
+    const resultado = jogos.filter((jogo) =>
+       jogo.titulo.toLowerCase().includes(busca.toLowerCase())
+     );
+     setJogosFiltrados(resultado);
+  }, [busca]);
 
   function renderItem({ item }) {
     return (
       <TouchableOpacity
         style={styles.card}
         // TODO: implementar onPress com navigation.navigate passando os dados do jogo
-        // onPress={() => navigation.navigate('Detalhe', { ...item })}
+        onPress={() => navigation.navigate('Detalhe', { titulo, genero, plataforma, nota, sinopse })}
       >
         <View style={styles.cardIcone}>
           {/* TODO: substituir pela inicial do titulo ou outro elemento do seu tema */}
@@ -121,14 +113,14 @@ export default function HomeScreen() {
           style={styles.buscaInput}
           placeholder="Buscar jogo..."
           placeholderTextColor="#999"
-          // value={busca}
-          // onChangeText={setBusca}
+          value={busca}
+          onChangeText={setBusca}
         />
       </View>
 
       {/* TODO: trocar data={jogos} por data={jogosFiltrados} apos implementar o estado */}
       <FlatList
-        data={jogos}
+        data={jogosFiltrados}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
         contentContainerStyle={styles.lista}
