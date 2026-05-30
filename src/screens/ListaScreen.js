@@ -3,24 +3,24 @@
 import { useState } from "react";
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 // TODO: apos criar o componente CardJogo, importe-o aqui:
-// import { CardJogo } from '../components';
+import { CardJogo } from '../components';
 
 // Dados de exemplo para voce visualizar o renderItem funcionando
 // Em um app real, esses itens chegariam via route.params enviados pela DetalheScreen
 const jogosMock = [
   {
     id: "1",
-    titulo: "The Legend of Zelda: Breath of the Wild",
-    genero: "Aventura / Mundo Aberto",
-    plataforma: "Nintendo Switch",
-    nota: "10/10",
+    titulo: "Minecraft",
+    genero: "Sobrevivência / Aventura / Mundo Aberto",
+    plataforma: "Disponível em praticamente todos as plataformas",
+    nota: "9/10",
   },
   {
-    id: "3",
-    titulo: "God of War",
-    genero: "Acao / Aventura",
-    plataforma: "PS4 / PC",
-    nota: "10/10",
+    id: "6",
+    titulo: "Call Of Duty: Black Ops 6",
+    genero: "Tiro em Primeira Pessoa / Ação",
+    plataforma: "PC / PS5 / PS4 / Xbox Series X/S / Xbox One",
+    nota: "8/10",
   },
 ];
 
@@ -28,9 +28,9 @@ export default function ListaScreen({ route }) {
   const [itensSalvos, setItensSalvos] = useState(jogosMock);
 
   // Para receber um jogo salvo da DetalheScreen via route.params:
-  // if (route.params?.novoJogo) {
-  //   setItensSalvos(prev => [...prev, route.params.novoJogo]);
-  // }
+  if (route.params?.novoJogo) {
+     setItensSalvos(prev => [...prev, route.params.novoJogo]);
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -46,7 +46,7 @@ export default function ListaScreen({ route }) {
           // TODO: crie o arquivo src/components/CardJogo.js
           // O componente CardJogo deve receber as props: titulo, genero, plataforma e nota
           // Depois substitua este bloco por:
-          // <CardJogo titulo={item.titulo} genero={item.genero} plataforma={item.plataforma} nota={item.nota} />
+           <CardJogo titulo={item.titulo} genero={item.genero} plataforma={item.plataforma} nota={item.nota} />
           <View style={styles.card} />
         )}
         ListEmptyComponent={
