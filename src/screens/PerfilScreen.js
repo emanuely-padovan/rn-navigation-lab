@@ -1,11 +1,5 @@
 // TODO: escolher um tema e personalizar os dados e estilizacao desta tela
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function PerfilScreen() {
   return (
