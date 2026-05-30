@@ -6,7 +6,10 @@ export default function App() {
     return (
         <SafeAreaProvider>
             {/*Chamar o NavigationContainer*/}
-            {/*Chamar o componente do navigation/index.js*/}
+            <NavigationContainer>
+                {/*Chamar o componente do navigation/index.js*/}
+                <AppNavigator/>
+            </NavigationContainer>
         </SafeAreaProvider>
     )
 }
